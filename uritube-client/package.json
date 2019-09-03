@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "antd": "^3.23.1",
     "babel-plugin-import": "^1.12.1",
     "customize-cra": "^0.5.0",
+=======
+    "antd": "^3.23.0",
+    "babel-plugin-import": "^1.12.1",
+    "customize-cra": "^0.5.0",
+    "eslint": "^6.3.0",
+>>>>>>> 1da1e15a39bd868e9acc94d41342e55f7e1b5ee8
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "react": "^16.9.0",
@@ -33,5 +40,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "prettier": "1.18.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
