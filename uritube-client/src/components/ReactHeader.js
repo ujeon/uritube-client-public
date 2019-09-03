@@ -1,9 +1,10 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
+import Youtube from './Youtube';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-const ReactHeader = () => {
+const ReactHeader = props => {
   return (
     <div>
       <Layout>
@@ -11,9 +12,8 @@ const ReactHeader = () => {
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ lineHeight: '64px' }}>
             <Menu.Item key="0">Uritube</Menu.Item>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
+            <Menu.Item key="1">title</Menu.Item>
+            <Menu.Item key="2">nav 1</Menu.Item>
           </Menu>
         </Header>
         <Layout>
@@ -24,43 +24,19 @@ const ReactHeader = () => {
               defaultOpenKeys={['sub1']}
               style={{ height: '100%', borderRight: 0 }}
             >
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="user" />
-                    subnav 1
-                  </span>
-                }
-              >
+              <SubMenu key="sub1" title={<span>subnav 1</span>}>
                 <Menu.Item key="1">option1</Menu.Item>
                 <Menu.Item key="2">option2</Menu.Item>
                 <Menu.Item key="3">option3</Menu.Item>
                 <Menu.Item key="4">option4</Menu.Item>
               </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="laptop" />
-                    subnav 2
-                  </span>
-                }
-              >
+              <SubMenu key="sub2" title={<span>subnav 2</span>}>
                 <Menu.Item key="5">option5</Menu.Item>
                 <Menu.Item key="6">option6</Menu.Item>
                 <Menu.Item key="7">option7</Menu.Item>
                 <Menu.Item key="8">option8</Menu.Item>
               </SubMenu>
-              <SubMenu
-                key="sub3"
-                title={
-                  <span>
-                    <Icon type="notification" />
-                    subnav 3
-                  </span>
-                }
-              >
+              <SubMenu key="sub3" title={<span>subnav 3</span>}>
                 <Menu.Item key="9">option9</Menu.Item>
                 <Menu.Item key="10">option10</Menu.Item>
                 <Menu.Item key="11">option11</Menu.Item>
@@ -68,12 +44,7 @@ const ReactHeader = () => {
               </SubMenu>
             </Menu>
           </Sider>
-          <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+          <Layout>
             <Content
               style={{
                 background: '#fff',
@@ -82,7 +53,7 @@ const ReactHeader = () => {
                 minHeight: 280
               }}
             >
-              Content
+              <Youtube videos={props.appVideos} />
             </Content>
           </Layout>
         </Layout>

@@ -30,6 +30,7 @@
         "usePrettierrc": false
       }
     ],
+    "react/prop-types": 0,
     "no-console": "warn",
     "semi": 2,
     "no-undef": "warn"
