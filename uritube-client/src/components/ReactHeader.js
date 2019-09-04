@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Row, Col } from 'antd';
 import Youtube from './Youtube';
+import CommentInCate from './CommentInCate';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -10,7 +11,12 @@ const ReactHeader = props => {
       <Layout>
         <Header className="header">
           <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ lineHeight: '64px' }}>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={['2']}
+            style={{ lineHeight: '64px' }}
+          >
             <Menu.Item key="0">Uritube</Menu.Item>
             <Menu.Item key="1">title</Menu.Item>
             <Menu.Item key="2">nav 1</Menu.Item>
@@ -49,11 +55,17 @@ const ReactHeader = props => {
               style={{
                 background: '#fff',
                 padding: 24,
-                margin: 0,
-                minHeight: 280
+                margin: 0
               }}
             >
-              <Youtube videos={props.appVideos} />
+              <Row>
+                <Col span={12}>
+                  <Youtube videos={props.appVideos}></Youtube>
+                </Col>
+                <Col span={12}>
+                  <CommentInCate />
+                </Col>
+              </Row>
             </Content>
           </Layout>
         </Layout>
