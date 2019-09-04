@@ -1,7 +1,8 @@
-import React from 'react';
-import { Descriptions } from 'antd';
+import React from "react";
+import { Descriptions } from "antd";
 
 const UserInfo = () => {
+  const what = "abc";
   return (
     <div>
       <Descriptions title="User Info">

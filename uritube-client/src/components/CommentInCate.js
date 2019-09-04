@@ -2,6 +2,7 @@ import React from "react";
 import { Comment, Icon, Tooltip } from "antd";
 import moment from "moment";
 
+//sadfjkl
 class CommentInCate extends React.Component {
   state = {
     likes: 0,
