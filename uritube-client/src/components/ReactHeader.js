@@ -10,7 +10,12 @@ const ReactHeader = props => {
       <Layout>
         <Header className="header">
           <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ lineHeight: '64px' }}>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={['2']}
+            style={{ lineHeight: '64px' }}
+          >
             <Menu.Item key="0">Uritube</Menu.Item>
             <Menu.Item key="1">title</Menu.Item>
             <Menu.Item key="2">nav 1</Menu.Item>
