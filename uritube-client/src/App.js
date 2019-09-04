@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchData } from './components/fetchData';
+import { fetchData } from './util/fetchData';
 import ReactHeader from './components/ReactHeader';
 
 import './App.css';
@@ -19,12 +19,6 @@ class App extends Component {
       this.setState({ videos: data.items });
     });
   }
-
-  // eventHandler(video) {
-  //   this.setState({
-  //     currentVideo: video
-  //   });
-  // }
 
   render() {
     return (
