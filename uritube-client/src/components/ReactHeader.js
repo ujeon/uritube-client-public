@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Row, Col } from 'antd';
 import Youtube from './Youtube';
+import CommentInCate from './CommentInCate';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -54,11 +55,17 @@ const ReactHeader = props => {
               style={{
                 background: '#fff',
                 padding: 24,
-                margin: 0,
-                minHeight: 280
+                margin: 0
               }}
             >
-              <Youtube videos={props.appVideos} />
+              <Row>
+                <Col span={12}>
+                  <Youtube videos={props.appVideos}></Youtube>
+                </Col>
+                <Col span={12}>
+                  <CommentInCate />
+                </Col>
+              </Row>
             </Content>
           </Layout>
         </Layout>
