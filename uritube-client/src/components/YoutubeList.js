@@ -1,13 +1,13 @@
 import React from 'react';
 
-const YoutubeList = ({ videos }) => {
+const YoutubeList = props => {
   return (
     <div>
       <div>
-        {videos.map((video, idx) => (
-          <li key={idx}>{video.snippet.title}</li>
-        ))}
+        <img className="youtubeImg" src={props.video} alt={props.title}></img>
       </div>
+      <div>{props.title}</div>
+      <div>{props.description}</div>
     </div>
   );
 };

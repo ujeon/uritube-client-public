@@ -4,7 +4,15 @@ import YoutubeList from './YoutubeList';
 const Youtube = props => {
   return (
     <div>
-      <YoutubeList videos={props.videos} />
+      {console.log('videos console', props)}
+      {props.videos.map(video => (
+        <YoutubeList
+          key={video.id.videoId}
+          video={video.snippet.thumbnails.default.url}
+          title={video.snippet.title}
+          description={video.snippet.description}
+        />
+      ))}
     </div>
   );
 };
