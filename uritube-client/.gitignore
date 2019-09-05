@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#YoutubeAPI
+/config
+
 # testing
 /coverage
 

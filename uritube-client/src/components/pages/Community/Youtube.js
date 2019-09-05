@@ -4,7 +4,7 @@ import YoutubeList from './YoutubeList';
 const Youtube = props => {
   return (
     <div>
-      {console.log('videos console', props)}
+      {/* {console.log('videos console', props)} */}
       {props.videos.map(video => (
         <YoutubeList
           key={video.id.videoId}
