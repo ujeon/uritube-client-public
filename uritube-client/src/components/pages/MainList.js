@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Col, Row } from 'antd';
 
-const IndexList = () => {
+const MainList = () => {
   // 안의 내용을 어떻게 자동으로 넣을 수 있을지 생각 할 것
   //
   return (
@@ -49,4 +49,4 @@ const IndexList = () => {
   );
 };
 
-export default IndexList;
+export default MainList;
