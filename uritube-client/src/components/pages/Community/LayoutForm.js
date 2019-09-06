@@ -20,7 +20,7 @@ const LayoutForm = () => {
               <Route exact path="/community/login" component={LoginForm} />
               <Route exact path="/community/signup" component={SignUp} />
               <Route exact path="/community/userinfo" component={UserInfo} />
-              <Route exact path="/community/:cate" component={ContentForm} />
+              <Route path="/community/:cate" component={ContentForm} />
             </Switch>
           </div>
         </Layout>
