@@ -3,7 +3,7 @@ import { Layout, Menu } from 'antd';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
-const SiderFormUser = () => {
+const SiderForm = () => {
   return (
     <div>
       <Sider width={200} style={{ background: '#fff' }}>
@@ -37,4 +37,4 @@ const SiderFormUser = () => {
   );
 };
 
-export default SiderFormUser;
+export default SiderForm;

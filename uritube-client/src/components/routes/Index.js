@@ -2,12 +2,18 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Main from '../pages/Main';
 import LayoutForm from '../pages/Community/LayoutForm';
+import LayoutFormUser from '../pages/Community/LayoutFormUser';
 
 const Index = () => {
+  const signin = false;
   return (
     <div>
       <Route exact path="/" component={Main} />
-      <Route path="/community/" component={LayoutForm} />
+      {!signin ? (
+        <Route path="/community/" component={LayoutForm} />
+      ) : (
+        <Route path="/community/" component={LayoutFormUser} />
+      )}
     </div>
   );
 };
