@@ -1,10 +1,10 @@
-import React from 'react';
-import { Layout, Menu } from 'antd';
-import { Link, Route, Switch } from 'react-router-dom';
-import HeaderFormUser from '../Community/HeaderFormUser';
-import SiderFormUser from '../Community/SiderFormUser';
-import UserInfo from '../UserInfo';
-import ContentForm from '../Contents/ContentForm';
+import React from "react";
+import { Layout } from "antd";
+import { Route, Switch } from "react-router-dom";
+import HeaderFormUser from "../Community/HeaderFormUser";
+import SiderFormUser from "../Community/SiderFormUser";
+import UserInfo from "../UserInfo";
+import ContentForm from "../Contents/ContentForm";
 
 const LayoutFormUser = () => {
   return (

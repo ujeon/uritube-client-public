@@ -1,17 +1,17 @@
-import React from 'react';
-import { Layout, Menu } from 'antd';
+import React from "react";
+import { Layout, Menu } from "antd";
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 const SiderFormUser = () => {
   return (
     <div>
-      <Sider width={200} style={{ background: '#fff' }}>
+      <Sider width={200} style={{ background: "#fff" }}>
         <Menu
           mode="inline"
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          style={{ height: '100%', borderRight: 0 }}
+          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["sub1"]}
+          style={{ height: "100%", borderRight: 0 }}
         >
           <SubMenu key="sub1" title={<span>subnav 1</span>}>
             <Menu.Item key="1">option1</Menu.Item>

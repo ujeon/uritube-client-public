@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Input, Checkbox, Button } from 'antd';
+import React from "react";
+import { Form, Input, Checkbox, Button } from "antd";
 
 // const { Option } = Select;//
 // const AutoCompleteOption = AutoComplete.Option;
@@ -31,8 +31,8 @@ class RegistrationForm extends React.Component {
 
   compareToFirstPassword(rule, value, callback) {
     const { form } = this.props;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
+    if (value && value !== form.getFieldValue("password")) {
+      callback("Two passwords that you enter is inconsistent!");
     } else {
       callback();
     }
@@ -41,7 +41,7 @@ class RegistrationForm extends React.Component {
   validateToNextPassword(rule, value, callback) {
     const { form } = this.props;
     if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
+      form.validateFields(["confirm"], { force: true });
     }
     callback();
   }
@@ -51,7 +51,9 @@ class RegistrationForm extends React.Component {
     if (!value) {
       autoCompleteResult = [];
     } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
+      autoCompleteResult = [".com", ".org", ".net"].map(
+        domain => `${value}${domain}`
+      );
     }
     this.setState({ autoCompleteResult });
   }
@@ -85,25 +87,25 @@ class RegistrationForm extends React.Component {
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item label="E-mail">
-          {getFieldDecorator('email', {
+          {getFieldDecorator("email", {
             rules: [
               {
-                type: 'email',
-                message: 'The input is not valid E-mail!'
+                type: "email",
+                message: "The input is not valid E-mail!"
               },
               {
                 required: true,
-                message: 'Please input your E-mail!'
+                message: "Please input your E-mail!"
               }
             ]
           })(<Input />)}
         </Form.Item>
         <Form.Item label="Password" hasFeedback>
-          {getFieldDecorator('password', {
+          {getFieldDecorator("password", {
             rules: [
               {
                 required: true,
-                message: 'Please input your password!'
+                message: "Please input your password!"
               },
               {
                 validator: this.validateToNextPassword
@@ -112,11 +114,11 @@ class RegistrationForm extends React.Component {
           })(<Input.Password />)}
         </Form.Item>
         <Form.Item label="Confirm Password" hasFeedback>
-          {getFieldDecorator('confirm', {
+          {getFieldDecorator("confirm", {
             rules: [
               {
                 required: true,
-                message: 'Please confirm your password!'
+                message: "Please confirm your password!"
               },
               {
                 validator: this.compareToFirstPassword
@@ -125,11 +127,11 @@ class RegistrationForm extends React.Component {
           })(<Input.Password onBlur={this.handleConfirmBlur} />)}
         </Form.Item>
         <Form.Item label={<span>Nickname&nbsp;</span>}>
-          {getFieldDecorator('nickname', {
+          {getFieldDecorator("nickname", {
             rules: [
               {
                 required: true,
-                message: 'Please input your nickname!',
+                message: "Please input your nickname!",
                 whitespace: true
               }
             ]
@@ -137,11 +139,12 @@ class RegistrationForm extends React.Component {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          {getFieldDecorator('agreement', {
-            valuePropName: 'checked'
+          {getFieldDecorator("agreement", {
+            valuePropName: "checked"
           })(
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              check
+              {/* I have read the <a href="">agreement</a> */}
             </Checkbox>
           )}
         </Form.Item>
@@ -155,6 +158,6 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const UserInfo = Form.create({ name: 'register' })(RegistrationForm);
+const UserInfo = Form.create({ name: "register" })(RegistrationForm);
 
 export default UserInfo;
