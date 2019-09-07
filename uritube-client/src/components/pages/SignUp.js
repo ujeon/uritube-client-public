@@ -1,62 +1,84 @@
-import React from "react";
-import { Form, Input, Checkbox, Button } from "antd";
-
-// const { Option } = Select;//
+import React from 'react';
+import { Form, Input, Tooltip, Icon, Checkbox, Button } from 'antd';
+import { Link } from 'react-router-dom';
+// const { Option } = Select;
 // const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      confirmDirty: false,
-      autoCompleteResult: []
-    };
-  }
+  state = {
+    confirmDirty: false,
+    autoCompleteResult: []
+  };
 
-  handleSubmit(e) {
+  sendSignup = async values => {
+    const signupData = {
+      email: values.email,
+      password: values.password,
+      name: values.name
+    };
+    const config = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(signupData)
+    };
+    try {
+      const fetchResponse = await fetch(
+        `http://13.125.149.171:8080/users/signup`,
+        config
+      );
+      const data = await fetchResponse.json();
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
+
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        // console.log('Received values of form: ', values);
-        // eslint에서 console을 못 쓰게 막아 놨음 이 바보야!!!!
-        return values;
+        this.sendSignup(values);
       }
     });
-  }
+  };
 
-  handleConfirmBlur(e) {
+  handleConfirmBlur = e => {
     const { value } = e.target;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
+  };
 
-  compareToFirstPassword(rule, value, callback) {
+  compareToFirstPassword = (rules, value, callback) => {
     const { form } = this.props;
-    if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Two passwords that you enter is inconsistent!');
     } else {
       callback();
     }
-  }
+  };
 
-  validateToNextPassword(rule, value, callback) {
+  validateToNextPassword = (rules, value, callback) => {
     const { form } = this.props;
     if (value && this.state.confirmDirty) {
-      form.validateFields(["confirm"], { force: true });
+      form.validateFields(['confirm'], { force: true });
     }
     callback();
-  }
+  };
 
-  handleWebsiteChange(value) {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = [".com", ".org", ".net"].map(
-        domain => `${value}${domain}`
-      );
-    }
-    this.setState({ autoCompleteResult });
-  }
+  // handleWebsiteChange = value => {
+  //   let autoCompleteResult;
+  //   if (!value) {
+  //     autoCompleteResult = [];
+  //   } else {
+  //     autoCompleteResult = ['.com', '.org', '.net'].map(
+  //       domain => `${value}${domain}`
+  //     );
+  //   }
+  //   this.setState({ autoCompleteResult });
+  // };
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -87,25 +109,25 @@ class RegistrationForm extends React.Component {
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item label="E-mail">
-          {getFieldDecorator("email", {
+          {getFieldDecorator('email', {
             rules: [
               {
-                type: "email",
-                message: "The input is not valid E-mail!"
+                type: 'email',
+                message: 'The input is not valid E-mail!'
               },
               {
                 required: true,
-                message: "Please input your E-mail!"
+                message: 'Please input your E-mail!'
               }
             ]
           })(<Input />)}
         </Form.Item>
         <Form.Item label="Password" hasFeedback>
-          {getFieldDecorator("password", {
+          {getFieldDecorator('password', {
             rules: [
               {
                 required: true,
-                message: "Please input your password!"
+                message: 'Please input your password!'
               },
               {
                 validator: this.validateToNextPassword
@@ -114,11 +136,11 @@ class RegistrationForm extends React.Component {
           })(<Input.Password />)}
         </Form.Item>
         <Form.Item label="Confirm Password" hasFeedback>
-          {getFieldDecorator("confirm", {
+          {getFieldDecorator('confirm', {
             rules: [
               {
                 required: true,
-                message: "Please confirm your password!"
+                message: 'Please confirm your password!'
               },
               {
                 validator: this.compareToFirstPassword
@@ -126,38 +148,40 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input.Password onBlur={this.handleConfirmBlur} />)}
         </Form.Item>
-        <Form.Item label={<span>Nickname&nbsp;</span>}>
-          {getFieldDecorator("nickname", {
+        <Form.Item
+          label={
+            <span>
+              ID&nbsp;
+              <Tooltip title="What do you want others to call you?">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          {getFieldDecorator('name', {
             rules: [
               {
                 required: true,
-                message: "Please input your nickname!",
+                message: 'Please input your ID!',
                 whitespace: true
               }
             ]
           })(<Input />)}
         </Form.Item>
-
         <Form.Item {...tailFormItemLayout}>
-          {getFieldDecorator("agreement", {
-            valuePropName: "checked"
-          })(
-            <Checkbox>
-              check
-              {/* I have read the <a href="">agreement</a> */}
-            </Checkbox>
-          )}
+          {getFieldDecorator('agreement', {
+            valuePropName: 'checked'
+          })(<Checkbox>사용약관에 동의합니다.</Checkbox>)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Register
+            <Link to="/community/login">Register</Link>
           </Button>
         </Form.Item>
       </Form>
     );
   }
 }
-
-const UserInfo = Form.create({ name: "register" })(RegistrationForm);
+const UserInfo = Form.create({ name: 'register' })(RegistrationForm);
 
 export default UserInfo;
