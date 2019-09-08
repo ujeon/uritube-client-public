@@ -5,7 +5,11 @@ import LayoutForm from '../pages/Community/LayoutForm';
 import LayoutFormUser from '../pages/Community/LayoutFormUser';
 
 const Index = () => {
-  const signin = false;
+  let signin = false;
+  if (window.sessionStorage.id) {
+    signin = true;
+  }
+
   return (
     <div style={{ textAlign: 'center' }}>
       <Route exact path="/" component={Main} />

@@ -13,7 +13,6 @@ export const postData = async values => {
       config
     );
     const data = await fetchResponse.json();
-    console.log(data);
     return data;
   } catch (e) {
     console.error(e);

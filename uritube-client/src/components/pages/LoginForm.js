@@ -2,41 +2,39 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './LoginForm.css';
 import { Form, Icon, Input, Button } from 'antd';
+import { postData } from '../../util/postData';
+import { getData } from '../../util/getData';
 
 class NormalLoginForm extends React.Component {
-  state = {};
-  sendLogin = async values => {
-    const config = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    };
-    try {
-      const fetchResponse = await fetch(
-        `http://13.125.149.171:8080/users/signin`,
-        config
-      );
-      const data = await fetchResponse.json();
-      return data;
-    } catch (e) {
-      console.error(e);
-    }
+  state = {
+    items: []
+  };
+
+  saveProfile = values => {
+    window.sessionStorage.setItem('email', values.email);
+    window.sessionStorage.setItem('name', values.name);
+    window.sessionStorage.setItem('id', values.id);
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.sendLogin(values);
+        postData(values);
+        //임의로 3을 쓰겠음
+        getData(`users/3/comments`, items => {
+          this.setState({
+            items
+          });
+          this.saveProfile(items);
+        });
       }
     });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    // console.log(this.state.items);
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
