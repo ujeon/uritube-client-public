@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import axios from "axios";
-import MainList from "./MainList";
-import { Row } from "antd";
+import MainList from './MainList';
+import { Row } from 'antd';
+import HeaderForm from '../pages/Community/HederForm';
+import HeaderFormUser from '../pages/Community/HeaderFormUser';
 
 class Main extends Component {
   state = {
@@ -10,7 +12,7 @@ class Main extends Component {
 
   async componentDidMount() {
     const data = await (await fetch(
-      "http://13.125.149.171:8080/titles"
+      'http://13.125.149.171:8080/titles'
     )).json();
     this.setState({
       data
@@ -30,12 +32,15 @@ class Main extends Component {
   render() {
     const { data } = this.state;
     return (
-      <div style={{ background: "#ECECEC", padding: "30px" }}>
-        <Row gutter={16}>
-          {data.map(data => (
-            <MainList data={data} />
-          ))}
-        </Row>
+      <div>
+        <HeaderForm />
+        <div style={{ background: '#ECECEC', padding: '30px' }}>
+          <Row gutter={16}>
+            {data.map(data => (
+              <MainList data={data} />
+            ))}
+          </Row>
+        </div>
       </div>
     );
   }

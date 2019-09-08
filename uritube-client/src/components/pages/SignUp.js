@@ -16,6 +16,7 @@ class RegistrationForm extends React.Component {
       password: values.password,
       name: values.name
     };
+    console.log(signupData);
     const config = {
       method: 'POST',
       headers: {
@@ -30,6 +31,7 @@ class RegistrationForm extends React.Component {
         config
       );
       const data = await fetchResponse.json();
+      console.log(data);
       return data;
     } catch (e) {
       console.error(e);
@@ -148,16 +150,7 @@ class RegistrationForm extends React.Component {
             ]
           })(<Input.Password onBlur={this.handleConfirmBlur} />)}
         </Form.Item>
-        <Form.Item
-          label={
-            <span>
-              ID&nbsp;
-              <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
-          }
-        >
+        <Form.Item label={<span>ID&nbsp;</span>}>
           {getFieldDecorator('name', {
             rules: [
               {
@@ -174,9 +167,19 @@ class RegistrationForm extends React.Component {
           })(<Checkbox>사용약관에 동의합니다.</Checkbox>)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            <Link to="/community/login">Register</Link>
-          </Button>
+          {!this.state.confirmDirty ? (
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ pointerEvents: 'none' }}
+            >
+              <Link to="/community/login">Register</Link>
+            </Button>
+          ) : (
+            <Button type="primary" htmlType="submit">
+              register
+            </Button>
+          )}
         </Form.Item>
       </Form>
     );
