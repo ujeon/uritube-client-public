@@ -2,13 +2,13 @@ import React from 'react';
 import { Comment, Tooltip } from 'antd';
 import { getData } from '../../../util/getData';
 
-class CommentInCate extends React.Component {
+class CommentsUser extends React.Component {
   state = {
     items: []
   };
 
   componentDidMount() {
-    getData(`categories/${this.props.cateId}/comments`, items => {
+    getData(`users/${this.props.match.params.userid}/comments`, items => {
       this.setState({
         items
       });
@@ -20,14 +20,13 @@ class CommentInCate extends React.Component {
 
     return (
       <div>
-        {items.length === 0 ? (
+        {items.length === 0 || items.Comments.length === 0 ? (
           <div>작성한 댁글이 없습니당</div>
         ) : (
           <div>
-            {items.map((data, idx) => (
+            {items.Comments.map((data, idx) => (
               <Comment
-                key={idx}
-                author={data.user_id}
+                author={items.name}
                 content={<p>{data.text}</p>}
                 datetime={
                   <Tooltip title={data.createdAt}>
@@ -43,4 +42,4 @@ class CommentInCate extends React.Component {
   }
 }
 
-export default CommentInCate;
+export default CommentsUser;

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-// import axios from "axios";
-import MainList from "./MainList";
-import { Row } from "antd";
+import React, { Component } from 'react';
+import MainList from './MainList';
+import { Row } from 'antd';
+import HeaderForm from '../pages/Community/HeaderForm';
+// import HeaderFormUser from '../pages/Community/HeaderFormUser';
 
 class Main extends Component {
   state = {
@@ -10,32 +11,25 @@ class Main extends Component {
 
   async componentDidMount() {
     const data = await (await fetch(
-      "http://13.125.149.171:8080/titles"
+      'http://13.125.149.171:8080/titles'
     )).json();
     this.setState({
       data
     });
   }
 
-  // 카테고리 데이터 받아오기
-  // getCategories = async () => {
-  //   const data = await axios.get("http://13.125.149.171:8080/titles");
-  //   this.setState({ data });
-  // };
-
-  //  componentDidMount() {
-  //   this.getCategories();
-  // }
-
   render() {
     const { data } = this.state;
     return (
-      <div style={{ background: "#ECECEC", padding: "30px" }}>
-        <Row gutter={16}>
-          {data.map(data => (
-            <MainList data={data} />
-          ))}
-        </Row>
+      <div>
+        <HeaderForm />
+        <div style={{ background: '#ECECEC', padding: '30px' }}>
+          <Row gutter={16}>
+            {data.map(data => (
+              <MainList data={data} />
+            ))}
+          </Row>
+        </div>
       </div>
     );
   }
