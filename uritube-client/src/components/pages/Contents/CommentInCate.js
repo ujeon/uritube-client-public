@@ -1,77 +1,44 @@
-import React from "react";
-import { Comment, Icon, Tooltip } from "antd";
-import moment from "moment";
+import React from 'react';
+import { Comment, Tooltip } from 'antd';
+import { getData } from '../../../util/getData';
 
-//sadfjkl
 class CommentInCate extends React.Component {
   state = {
-    likes: 0,
-    dislikes: 0,
-    action: null
+    items: []
   };
 
-  like = () => {
-    this.setState({
-      likes: 1,
-      dislikes: 0,
-      action: "liked"
+  componentDidMount() {
+    getData(`categories/${this.props.cateId}/comments`, items => {
+      this.setState({
+        items
+      });
     });
-  };
-
-  dislike = () => {
-    this.setState({
-      likes: 0,
-      dislikes: 1,
-      action: "disliked"
-    });
-  };
+  }
 
   render() {
-    const { likes, dislikes, action } = this.state;
-
-    const actions = [
-      <span key="comment-basic-like">
-        <Tooltip title="Like">
-          <Icon
-            type="like"
-            theme={action === "liked" ? "filled" : "outlined"}
-            onClick={this.like}
-          />
-        </Tooltip>
-        <span style={{ paddingLeft: 8, cursor: "auto" }}>{likes}</span>
-      </span>,
-      <span key=' key="comment-basic-dislike"'>
-        <Tooltip title="Dislike">
-          <Icon
-            type="dislike"
-            theme={action === "disliked" ? "filled" : "outlined"}
-            onClick={this.dislike}
-          />
-        </Tooltip>
-        <span style={{ paddingLeft: 8, cursor: "auto" }}>{dislikes}</span>
-      </span>,
-      <span key="comment-basic-reply-to">Reply to</span>
-    ];
+    const { items } = this.state;
 
     return (
-      <Comment
-        // 맵으로 돌리고 commentlist로 넘어가야 할 부분
-        actions={actions}
-        // author={<a>Han Solo</a>}
-        author="Han Solo"
-        content={
-          <p>
-            We supply a series of design principles, practical patterns and high
-            quality design resources (Sketch and Axure), to help people create
-            their product prototypes beautifully and efficiently.
-          </p>
-        }
-        datetime={
-          <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-            <span>{moment().fromNow()}</span>
-          </Tooltip>
-        }
-      />
+      <div>
+        {items.length === 0 ? (
+          <div>작성한 댁글이 없습니당</div>
+        ) : (
+          <div>
+            {items.map((data, idx) => (
+              <Comment
+                key={idx}
+                author={data.user_id}
+                content={<p>{data.text}</p>}
+                datetime={
+                  <Tooltip title={data.createdAt}>
+                    <span>{data.createdAt}</span>
+                  </Tooltip>
+                }
+              />
+            ))}
+          </div>
+        )}
+      </div>
     );
   }
 }

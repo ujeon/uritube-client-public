@@ -5,14 +5,14 @@ import LayoutForm from '../pages/Community/LayoutForm';
 import LayoutFormUser from '../pages/Community/LayoutFormUser';
 
 const Index = () => {
-  const signin = true;
+  const signin = false;
   return (
     <div style={{ textAlign: 'center' }}>
       <Route exact path="/" component={Main} />
       {!signin ? (
         <Route path="/community/" component={LayoutForm} />
       ) : (
-        <Route path="/community/:cate/:id" component={LayoutFormUser} />
+        <Route path="/community/" component={LayoutFormUser} />
       )}
     </div>
   );

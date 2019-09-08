@@ -16,7 +16,9 @@ const HeaderFormUser = () => {
         defaultSelectedKeys={['2']}
         style={{ lineHeight: '64px' }}
       >
-        <Menu.Item key="0">Uritube</Menu.Item>
+        <Menu.Item key="0">
+          <Link to="/">Uritube</Link>
+        </Menu.Item>
         <Menu.Item key="1">
           <Link to="/community/1/1">Title</Link>
         </Menu.Item>

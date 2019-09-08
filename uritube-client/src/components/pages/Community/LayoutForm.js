@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { Route, Switch } from 'react-router-dom';
 import LoginForm from '../LoginForm';
-import HeaderForm from '../Community/HederForm';
+import HeaderForm from '../Community/HeaderForm';
 import SiderForm from '../Community/SiderForm';
 import SignUp from '../SignUp';
 import UserInfo from '../UserInfo';

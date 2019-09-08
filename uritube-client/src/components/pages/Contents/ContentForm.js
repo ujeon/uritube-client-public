@@ -10,12 +10,12 @@ const ContentForm = ({ match }) => {
       <Content>
         <Row>
           <Col span={12}>
-            {console.log(match.params)}
+            {/* {console.log(match.params)} */}
             {/* <Youtube videos={props.appVideos}></Youtube> */}
             <Youtube />
           </Col>
           <Col span={12}>
-            <CommentInCate />
+            <CommentInCate cateId={match.params.cate} />
           </Col>
         </Row>
       </Content>

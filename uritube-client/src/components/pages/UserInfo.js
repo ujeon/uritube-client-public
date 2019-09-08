@@ -5,8 +5,8 @@ import { getData } from '../../util/getData';
 const UserInfo = ({ match }) => {
   const userId = match.params.userid;
 
-  useEffect(async () => {
-    await getData(`users/${userId}/info`, items => {
+  useEffect(() => {
+    getData(`users/${userId}/info`, items => {
       setItems(items);
     });
   }, []);

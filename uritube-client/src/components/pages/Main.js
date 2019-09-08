@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import axios from "axios";
 import MainList from './MainList';
 import { Row } from 'antd';
-import HeaderForm from '../pages/Community/HederForm';
-import HeaderFormUser from '../pages/Community/HeaderFormUser';
+import HeaderForm from '../pages/Community/HeaderForm';
+// import HeaderFormUser from '../pages/Community/HeaderFormUser';
 
 class Main extends Component {
   state = {
@@ -18,16 +17,6 @@ class Main extends Component {
       data
     });
   }
-
-  // 카테고리 데이터 받아오기
-  // getCategories = async () => {
-  //   const data = await axios.get("http://13.125.149.171:8080/titles");
-  //   this.setState({ data });
-  // };
-
-  //  componentDidMount() {
-  //   this.getCategories();
-  // }
 
   render() {
     const { data } = this.state;
