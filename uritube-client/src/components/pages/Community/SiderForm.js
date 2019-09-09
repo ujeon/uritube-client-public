@@ -10,10 +10,7 @@ class SiderForm extends Component {
       data: [],
       title: "main"
     };
-    // this.titleHandling = this.titleHandling.bind(this);
   }
-  // onClick = { titleHandling };
-  // 온클릭 이벤트를 어디에 걸어야 할까
 
   async componentDidMount() {
     const data = await (await fetch(
@@ -33,7 +30,7 @@ class SiderForm extends Component {
               key={el.id}
               title={el.name}
               contentsList={el.categories.map(el => (
-                <p>{el.name}</p>
+                <link to="/community/:cate">{el.name}</link>
               ))}
             />
           ))}

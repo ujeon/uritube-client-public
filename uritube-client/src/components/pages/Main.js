@@ -21,15 +21,13 @@ class Main extends Component {
   render() {
     const { data } = this.state;
     return (
-      <div>
-        <HeaderForm />
-        <div style={{ background: "#ECECEC", padding: "30px" }}>
-          <Row gutter={16}>
-            {data.map(data => (
-              <MainList data={data} />
-            ))}
-          </Row>
-        </div>
+      <div style={{ background: "#ECECEC", padding: "30px" }}>
+        <HeaderForm title={this.state.title} />
+        <Row gutter={16}>
+          {data.map(data => (
+            <MainList key={data.id} data={data} />
+          ))}
+        </Row>
       </div>
     );
   }
@@ -72,27 +70,6 @@ export default Main;
 //   render() {
 //     const { data } = this.state;
 
-//     return (
-//       <div style={{ background: "#ECECEC", padding: "30px" }}>
-//         <HeaderForm title={this.state.title} />
-//         <Row gutter={16}>
-//           {data.map(data => (
-//             <MainList
-//               key={data.id}
-//               title={data.name}
-//               contentsList={data.categories.map(el => (
-//                 <p>{el.name}</p>
-//               ))}
-//             />
-//           ))}
-//         </Row>
-//         {/* <Row gutter={16}>
-//           {data.map(data => (
-//             <MainList key={data.id} head={data.id} title={data.title} />
-//           ))}
-//         </Row> */}
-//       </div>
-//     );
 //   }
 // }
 
