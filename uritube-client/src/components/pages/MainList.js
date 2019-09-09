@@ -1,17 +1,18 @@
-import React from "react";
-import { Card, Col } from "antd";
+import React from 'react';
+import { Card, Col } from 'antd';
 
 const MainList = props => {
+  const data = props.data;
   return (
     <Col span={4}>
-      {/* <Card title={data.name} bordered={false}>
+      <Card title={data.name} bordered={false}>
         {data.categories.map(category => (
           <p key={category.id}>{category.name}</p>
         ))}
-      </Card> */}
-      <Card title={props.title} bordered={false}>
-        <p>{props.contentsList}</p>
       </Card>
+      {/* <Card title={props.title} bordered={false}>
+        <p>{props.contentsList}</p>
+      </Card> */}
     </Col>
   );
 };
