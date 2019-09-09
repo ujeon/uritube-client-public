@@ -2,9 +2,11 @@ import React from 'react';
 import { Col, Row, Layout } from 'antd';
 import Youtube from './Youtube';
 import CommentInCate from './CommentInCate';
+import CommentInput from './CommentInput';
 const { Content } = Layout;
 
 const ContentForm = ({ match }) => {
+  const login = window.sessionStorage.id;
   return (
     <Layout>
       <Content>
@@ -15,7 +17,10 @@ const ContentForm = ({ match }) => {
             <Youtube />
           </Col>
           <Col span={12}>
-            <CommentInCate cateId={match.params.cate} />
+            <div>
+              <CommentInCate cateId={match.params.cate} />
+              {login && <CommentInput cateId={match.params.cate} />}
+            </div>
           </Col>
         </Row>
       </Content>

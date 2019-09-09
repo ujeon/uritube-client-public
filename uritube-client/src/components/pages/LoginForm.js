@@ -20,7 +20,7 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        postData(values);
+        postData(values, 'users/signin');
         //임의로 3을 쓰겠음
         getData(`users/3/comments`, items => {
           this.setState({
