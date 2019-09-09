@@ -26,7 +26,7 @@ class SiderFormUser extends Component {
               key={el.id}
               title={el.name}
               contentsList={el.categories.map(el => (
-                <p>{el.name}</p>
+                <link to="/community/:cate">{el.name}</link>
               ))}
             />
           ))}
