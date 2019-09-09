@@ -35,17 +35,6 @@ class Main extends Component {
     const { data } = this.state;
 
     return (
-<<<<<<< HEAD
-      <div>
-        <HeaderForm />
-        <div style={{ background: "#ECECEC", padding: "30px" }}>
-          <Row gutter={16}>
-            {data.map(data => (
-              <MainList data={data} />
-            ))}
-          </Row>
-        </div>
-=======
       <div style={{ background: "#ECECEC", padding: "30px" }}>
         <HeaderForm title={this.state.title} />
         <Row gutter={16}>
@@ -64,7 +53,6 @@ class Main extends Component {
             <MainList key={data.id} head={data.id} title={data.title} />
           ))}
         </Row> */}
->>>>>>> 4443845647a35ca0b287ab5e2861d314b2892335
       </div>
     );
   }
