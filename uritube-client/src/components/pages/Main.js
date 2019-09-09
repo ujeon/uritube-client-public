@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 // import axios from "axios";
 import MainList from "./MainList";
+import HeaderForm from "./Community/HederForm";
 import { Row } from "antd";
 
 class Main extends Component {
-  state = {
-    data: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      title: "main"
+      //title 에 따른 ContentForm 렌더가 되어야 하는데.....
+    };
+    // this.titleHandling = this.titleHandling.bind(this);
+  }
+  // onClick = { this.titleHandling };
+  // 온클릭 이벤트를 어디에 걸어야 할까
+
+  // titleHandling() {
+  //   this.setState({ title: "title!!" });
+  // }
 
   async componentDidMount() {
     const data = await (await fetch(
@@ -17,25 +30,28 @@ class Main extends Component {
     });
   }
 
-  // 카테고리 데이터 받아오기
-  // getCategories = async () => {
-  //   const data = await axios.get("http://13.125.149.171:8080/titles");
-  //   this.setState({ data });
-  // };
-
-  //  componentDidMount() {
-  //   this.getCategories();
-  // }
-
   render() {
     const { data } = this.state;
+
     return (
       <div style={{ background: "#ECECEC", padding: "30px" }}>
+        <HeaderForm title={this.state.title} />
         <Row gutter={16}>
           {data.map(data => (
-            <MainList data={data} />
+            <MainList
+              key={data.id}
+              title={data.name}
+              contentsList={data.categories.map(el => (
+                <p>{el.name}</p>
+              ))}
+            />
           ))}
         </Row>
+        {/* <Row gutter={16}>
+          {data.map(data => (
+            <MainList key={data.id} head={data.id} title={data.title} />
+          ))}
+        </Row> */}
       </div>
     );
   }
