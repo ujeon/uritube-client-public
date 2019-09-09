@@ -1,12 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
 const { Header } = Layout;
-const { SubMenu } = Menu;
 
 const HeaderFormUser = () => {
   return (
     <Header className="header">
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={["2"]}
+        style={{ lineHeight: "64px" }}
+      >
+        <Menu.Item
+          key="0"
+          style={{
+            display: "static",
+            alignContent: "space-between"
+          }}
+        >
+          Uritube
+        </Menu.Item>
+        <Menu.Item
+          key="1"
+          style={{
+            display: "static",
+            justifyContent: "space-between",
+            alignSelf: "center"
+          }}
+        >
+          title
+        </Menu.Item>
+        <Menu.Item
+          key="2"
+          style={{
+            display: "static",
+            alignContent: "space-between",
+            float: "right"
+          }}
+        >
+          Logout
+        </Menu.Item>
+      </Menu>
+    </Header>
+  );
+};
+
+export default HeaderFormUser;
+
+/* <Header className="header">
       <div className="logo" />
       <Menu
         theme="dark"
@@ -22,13 +63,9 @@ const HeaderFormUser = () => {
           </Menu.Item>
           <Menu.Item key="2">내가 쓴 댓 글</Menu.Item>
           <Menu.Item key="3">
-            {/* signup을 false 로 구현 해야함 */}
+            signup을 false 로 구현 해야함 
             <Link to="/">로그아웃</Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
-    </Header>
-  );
-};
-
-export default HeaderFormUser;
+    </Header> */
