@@ -8,15 +8,25 @@ import { postData } from '../../util/postData';
 class NormalLoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loginFalse: false
+    };
   }
 
   saveProfile = values => {
-    window.sessionStorage.setItem('email', values.user_email);
-    window.sessionStorage.setItem('name', values.user_name);
-    window.sessionStorage.setItem('user_id', values.id);
-    window.localStorage.setItem('id', values.token);
-    return window.sessionStorage;
+    console.log(values.hasOwnProperty.token);
+    if (values.hasOwnProperty('token')) {
+      window.sessionStorage.setItem('email', values.user_email);
+      window.sessionStorage.setItem('name', values.user_name);
+      window.sessionStorage.setItem('user_id', values.id);
+      window.localStorage.setItem('id', values.token);
+      window.localStorage.isLogin = true;
+      return window.sessionStorage;
+    } else {
+      this.setState({
+        loginFalse: true
+      });
+    }
   };
 
   handleSubmit = e => {
@@ -28,10 +38,6 @@ class NormalLoginForm extends React.Component {
         });
       }
     });
-    window.localStorage.isLogin = true;
-    // if (window.sessionStorage.name) {
-    //   this.props.onLogin();
-    // }
     setTimeout(() => {
       this.props.onLogin();
     }, 1000);
@@ -41,6 +47,7 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
+        {this.state.loginFalse && <div>잘못된 양식인데여</div>}
         {window.localStorage.id ? (
           <Redirect to="/" />
         ) : (
