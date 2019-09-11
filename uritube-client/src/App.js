@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
-import { fetchData } from './components/fetchData';
-import ReactHeader from './components/ReactHeader';
-
+import Index from './components/routes/Index';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import Store from '../src/components/store/Store';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.eventHandler = this.eventHandler.bind(this);
-
     this.state = {
-      videos: []
+      logged: window.localStorage.isLogin || false,
+      onLogin: this.onLogin,
+      onLogout: this.onLogout
     };
   }
 
-  componentDidMount() {
-    fetchData({ max: 10, query: 'bts' }, data => {
-      this.setState({ videos: data.items });
+  onLogin = () => {
+    this.setState({
+      logged: window.localStorage.isLogin
     });
-  }
+  };
 
-  // eventHandler(video) {
-  //   this.setState({
-  //     currentVideo: video
-  //   });
-  // }
+  onLogout = () => {
+    this.setState({
+      logged: window.localStorage.isLogin
+    });
+  };
 
   render() {
     return (
-      <div>
-        <ReactHeader appVideos={this.state.videos} />
-      </div>
+      <Store.Provider value={this.state}>
+        <BrowserRouter>
+          <Index indexProps={this.state} />
+        </BrowserRouter>
+      </Store.Provider>
     );
   }
 }
