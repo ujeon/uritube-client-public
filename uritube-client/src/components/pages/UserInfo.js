@@ -1,12 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Descriptions } from 'antd';
-import { getData } from '../../util/getData';
 
-const UserInfo = ({ match }) => {
-  const userId = match.params.userid;
+const UserInfo = () => {
+  const getData = async (value, callback) => {
+    const config = {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token: window.localStorage.id
+      }
+    };
+    try {
+      const data = await (await fetch(
+        `http://13.125.149.171:8080/${value}`,
+        config
+      )).json();
+      callback(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
-    getData(`users/${userId}/info`, items => {
+    getData(`users/${window.sessionStorage.user_id}/info`, items => {
       setItems(items);
     });
   }, []);

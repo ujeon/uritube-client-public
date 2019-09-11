@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import MainList from "./MainList";
-import { Row } from "antd";
-import HeaderForm from "../pages/Community/HeaderForm";
-// import HeaderFormUser from '../pages/Community/HeaderFormUser';
+import React, { Component } from 'react';
+import MainList from './MainList';
+import { Row } from 'antd';
+import HeaderForm from '../pages/Community/HeaderForm';
+import HeaderFormUser from '../pages/Community/HeaderFormUser';
 
 class Main extends Component {
   state = {
@@ -11,7 +11,7 @@ class Main extends Component {
 
   async componentDidMount() {
     const data = await (await fetch(
-      "http://13.125.149.171:8080/titles"
+      'http://13.125.149.171:8080/titles'
     )).json();
     this.setState({
       data
@@ -20,9 +20,14 @@ class Main extends Component {
 
   render() {
     const { data } = this.state;
+    const { value, match } = this.props;
     return (
-      <div style={{ background: "#ECECEC", padding: "30px" }}>
-        <HeaderForm title={this.state.title} />
+      <div style={{ background: '#ECECEC', padding: '30px' }}>
+        {window.localStorage.id ? (
+          <HeaderFormUser value={value} match={match} />
+        ) : (
+          <HeaderForm value={value} match={match} />
+        )}
         <Row gutter={16}>
           {data.map(data => (
             <MainList key={data.id} data={data} />
@@ -34,43 +39,3 @@ class Main extends Component {
 }
 
 export default Main;
-// import React, { Component } from "react";
-// import MainList from "./MainList";
-// import HeaderForm from "./Community/HederForm";
-// import { Row } from "antd";
-// import HeaderForm from "../pages/Community/HeaderForm";
-// // import HeaderFormUser from '../pages/Community/HeaderFormUser';
-
-// class Main extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       data: [],
-//       title: "main"
-//       //title 에 따른 ContentForm 렌더가 되어야 하는데.....
-//     };
-//     // this.titleHandling = this.titleHandling.bind(this);
-//   }
-//   // onClick = { this.titleHandling };
-//   // 온클릭 이벤트를 어디에 걸어야 할까
-
-//   // titleHandling() {
-//   //   this.setState({ title: "title!!" });
-//   // }
-
-//   async componentDidMount() {
-//     const data = await (await fetch(
-//       "http://13.125.149.171:8080/titles"
-//     )).json();
-//     this.setState({
-//       data
-//     });
-//   }
-
-//   render() {
-//     const { data } = this.state;
-
-//   }
-// }
-
-// export default Main;

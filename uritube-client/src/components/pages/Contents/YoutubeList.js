@@ -1,14 +1,26 @@
 import React from 'react';
+import './YoutubeList.css';
+import ReactPlayer from 'react-player';
 
 const YoutubeList = props => {
+  // let videoClick = ((val)=>{
+  //   {console.log(val)}
+  //   <iframe className="embed-responsive-item"
+  //     src={"https://www.youtube.com/embed/"+ props.videoId}
+  //     allowFullScreen>
+  //   </iframe>
+  // })
+
   return (
-    <div>
-      <div>유투브 리스트</div>
-      {/* <div>
+    <div className="videoBox">
+      <span className="imgBox">
         <img className="youtubeImg" src={props.video} alt={props.title}></img>
-      </div>
-      <div>{props.title}</div>
-      <div>{props.description}</div> */}
+      </span>
+      <div></div>
+      <span className="titleBox">
+        <span className="title">{props.title}</span>
+      </span>
+      <ReactPlayer />
     </div>
   );
 };
