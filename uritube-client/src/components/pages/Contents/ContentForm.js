@@ -2,24 +2,26 @@ import React from 'react';
 import { Col, Row, Layout } from 'antd';
 import Youtube from './Youtube';
 import CommentInCate from './CommentInCate';
-import CommentInput from './CommentInput';
+// import { getData } from '../../../util/getData';
 const { Content } = Layout;
 
 const ContentForm = ({ match }) => {
-  const login = window.sessionStorage.id;
+  // const [item, setItem] = useState();
+
+  // getData('categories/' + match.params.cate, item => {
+  //   setItem(item.name);
+  // });
+
   return (
     <Layout>
       <Content>
         <Row>
-          <Col span={12}>
-            {/* {console.log(match.params)} */}
-            {/* <Youtube videos={props.appVideos}></Youtube> */}
-            <Youtube />
+          <Col span={15}>
+            <Youtube cateId={match.params.cate} item={match} />
           </Col>
-          <Col span={12}>
+          <Col span={9}>
             <div>
               <CommentInCate cateId={match.params.cate} />
-              {login && <CommentInput cateId={match.params.cate} />}
             </div>
           </Col>
         </Row>

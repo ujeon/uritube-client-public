@@ -8,11 +8,13 @@ class CommentsUser extends React.Component {
   };
 
   componentDidMount() {
-    getData(`users/${this.props.match.params.userid}/comments`, items => {
-      this.setState({
-        items
+    setInterval(() => {
+      getData(`users/${this.props.match.params.userid}/comments`, items => {
+        this.setState({
+          items
+        });
       });
-    });
+    }, 3000);
   }
 
   render() {
@@ -20,12 +22,15 @@ class CommentsUser extends React.Component {
 
     return (
       <div>
-        {items.length === 0 || items.Comments.length === 0 ? (
+        {items === undefined ||
+        items.length === 0 ||
+        items.Comments.length === 0 ? (
           <div>작성한 댁글이 없습니당</div>
         ) : (
           <div>
             {items.Comments.map((data, idx) => (
               <Comment
+                key={idx}
                 author={items.name}
                 content={<p>{data.text}</p>}
                 datetime={

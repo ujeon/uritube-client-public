@@ -7,3 +7,25 @@
 .login-form-button {
   width: 100%;
 }
+
+.ant-card-body {
+  height: 300px;
+  margin: 10px;
+}
+
+.ant-layout {
+  height: 950px;
+}
+
+.ant-comment {
+  margin: 5px;
+  background-color: white;
+}
+
+.ant-comment-inner {
+  text-align: left;
+}
+
+.ant-layout-sider {
+  height: 100%;
+}

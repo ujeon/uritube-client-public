@@ -1,18 +1,18 @@
 import React from 'react';
-import { Comment, Form, Button, List, Input } from 'antd';
+import { Comment, Form, Button, Input } from 'antd';
 import moment from 'moment';
 import { postData } from '../../../util/postData';
 
 const { TextArea } = Input;
 
-const CommentList = ({ comments }) => (
-  <List
-    dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-    itemLayout="horizontal"
-    renderItem={props => <Comment {...props} />}
-  />
-);
+// const CommentList = ({ comments }) => (
+//   <List
+//     dataSource={comments}
+//     header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+//     itemLayout="horizontal"
+//     renderItem={props => <Comment {...props} />}
+//   />
+// );
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <div>
@@ -33,12 +33,15 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 );
 
 class CommentInput extends React.Component {
-  state = {
-    comments: [],
-    submitting: false,
-    value: '',
-    login: window.sessionStorage
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: [],
+      submitting: false,
+      value: '',
+      login: window.sessionStorage
+    };
+  }
 
   handleSubmit = () => {
     if (!this.state.value) {
@@ -66,10 +69,13 @@ class CommentInput extends React.Component {
     const postValue = {
       user: this.state.login.name,
       text: this.state.value,
-      category_id: '일상 토크'
+      category_id: this.props.cateId
     };
-    console.log(postValue);
-    postData(postValue, 'comments/add');
+    postData(postValue, 'comments/add', data => {
+      console.log(data);
+    });
+    // context API로 리팩토링
+    // this.props.write = true;
   };
 
   handleChange = e => {
@@ -79,11 +85,12 @@ class CommentInput extends React.Component {
   };
 
   render() {
-    const { comments, submitting, value } = this.state;
+    const { submitting, value } = this.state;
 
     return (
       <div>
-        {comments.length > 0 && <CommentList comments={comments} />}
+        {/* {console.log(this.props)}
+        {comments.length > 0 && <CommentList comments={comments} />} */}
         <Comment
           content={
             <Editor

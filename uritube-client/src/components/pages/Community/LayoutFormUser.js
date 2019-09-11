@@ -6,29 +6,29 @@ import SiderFormUser from '../Community/SiderFormUser';
 import UserInfo from '../UserInfo';
 import ContentForm from '../Contents/ContentForm';
 import CommentsUser from '../Contents/CommentsUser';
+import Admin from '../Admin';
 
-const LayoutFormUser = () => {
+const LayoutFormUser = ({ value, match }) => {
   return (
     <div>
       <Layout>
-        <HeaderFormUser />
+        <HeaderFormUser value={value} match={match} />
         <Layout>
-          <SiderFormUser />
-          <div>
-            <Switch>
-              <Route path="/community/userinfo/:userid" component={UserInfo} />
-              <Route
-                exact
-                path="/community/usercomments/:userid"
-                component={CommentsUser}
-              />
-              <Route
-                exact
-                path="/community/:cate/:userid"
-                component={ContentForm}
-              />
-            </Switch>
-          </div>
+          <SiderFormUser value={value} match={match} />
+          <Switch>
+            <Route exact path="/community/admin" component={Admin} />
+            <Route exact path="/community/:cate" component={ContentForm} />
+            <Route
+              exact
+              path="/community/userinfo/:userid"
+              component={UserInfo}
+            />
+            <Route
+              exact
+              path="/community/usercomments/:userid"
+              component={CommentsUser}
+            />
+          </Switch>
         </Layout>
       </Layout>
     </div>
