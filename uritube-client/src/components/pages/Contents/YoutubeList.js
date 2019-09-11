@@ -1,73 +1,50 @@
-import React, { Component } from 'react';
-import './YoutubeList.css';
-import YoutubeVideo from './YoutubeVideo';
-import { Menu, Dropdown, Icon } from 'antd';
+import React, {Component} from 'react';
+import "./YoutubeList.css"
+import ReactPlayer from 'react-player'
+import YoutubeVideo from "./YoutubeVideo"
+import { Menu, Dropdown, Icon } from "antd";
 
 export default class YoutubeList extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super(props)
+    this.state = {
+      display : "display-none",
+      videoId : ""
+    }
   }
 
-  menu = (
-    <Menu>
-      <Menu.Item key="0">
-        <YoutubeVideo videoId={this.props.videoId} />
-      </Menu.Item>
-    </Menu>
-  );
-
+  handleClick=((val)=>{
+    this.setState({videoId: val})
+    if(this.state.display === "display-none"){
+      this.setState({display : "display-on"})
+    } else {
+      this.setState({display: "display-none"})
+    }
+  })
+  
   render() {
     return (
       <div className="videoBox">
         <span className="imgBox">
-          <img
-            className="youtubeImg"
-            src={this.props.video}
-            alt={this.props.title}
-          ></img>
-          <Dropdown overlay={this.menu} trigger={['click']}>
-            <Icon
-              type="down"
-              className="video"
-              src={this.props.video}
-              alt={this.props.title}
-            />
-          </Dropdown>
+          <img className="youtubeImg" src={this.props.video} alt={this.props.title} onClick={()=>{this.handleClick(this.props.videoId)}}></img>
         </span>
-        <div></div>
+      <div></div>
         <span className="titleBox">
           <span className="title">{this.props.title}</span>
         </span>
-        <div></div>
+        <div className="box">
+      <div className= {this.state.display} >
+        <ReactPlayer
+          url={"https:www.youtube.com/embed/"+ this.props.videoId}
+          play 
+          controls
+          width="720px"
+          // height="525px"
+        />
       </div>
-    );
+      </div>
+    </div> 
+    )
   }
 }
-// import React from 'react';
-// import './YoutubeList.css';
-// import ReactPlayer from 'react-player';
 
-// const YoutubeList = props => {
-//   // let videoClick = ((val)=>{
-//   //   {console.log(val)}
-//   //   <iframe className="embed-responsive-item"
-//   //     src={"https://www.youtube.com/embed/"+ props.videoId}
-//   //     allowFullScreen>
-//   //   </iframe>
-//   // })
-
-//   return (
-//     <div className="videoBox">
-//       <span className="imgBox">
-//         <img className="youtubeImg" src={props.video} alt={props.title}></img>
-//       </span>
-//       <div></div>
-//       <span className="titleBox">
-//         <span className="title">{props.title}</span>
-//       </span>
-//       <ReactPlayer />
-//     </div>
-//   );
-// };
-
-// export default YoutubeList;
